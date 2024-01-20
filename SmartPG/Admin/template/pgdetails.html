@@ -1,0 +1,74 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#">Table</a></div>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                      <div class="form-group row mb-4">
+                      <div class="col-sm-50 col-md-10">
+                        <button class="btn btn-primary"><a href="/pgdetails_insert/" style="color:white">ADD PG-Details</a></button>
+                      </div>
+                      </div>
+                        <thead>
+
+                          <tr>
+                            <th>PG Name</th>
+                            <th>PG Type</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Address</th>
+                            <th>Area Name</th>
+                            <th>Owner Name</th>
+                            <th>Amount</th>
+                            <!-- <th>Action</th> -->
+                          </tr>
+
+                        </thead>
+
+                        <tbody>
+                        {% for val in pd %}
+                          <tr>
+                            <td>{{val.pg_name}}</td>
+                            <td>{{val.pg_type}}</td>
+                            <td>{{val.description}}</td>
+                            <td><img src="{{val.img.url}}" height="100" width="100">
+
+                            </td>
+                            <td>{{val.address}}</td>
+                            <td>{{val.area_id.area_name}}</td>
+                            <td>{{val.owner_id.owner_name}}</td>
+                            <td>{{val.amount}}</td>
+                            <td>
+
+<!--                              <a href="/pgdetails_edit/{{val.pg_id}}"><img src="{% static 'images/edit1.png' %}" height="35"></a>-->
+
+                              <!-- <a href="/pgfacility_show/{{val.pg_id}}"> <b>View Facility</b> </a> -->
+
+                            </td>
+
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+        {% endblock %}

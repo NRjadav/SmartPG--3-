@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+
+<!-- Mirrored from radixtouch.in/templates/snkthemes/grexa/source/light/export-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Dec 2020 06:15:56 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Grexa - Admin Dashboard Template</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'pgowner_assets/css/app.min.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_assets/bundles/jqvmap/dist/jqvmap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_assets/bundles/weather-icon/css/weather-icons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_assets/bundles/weather-icon/css/weather-icons-wind.min.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_assets/bundles/bootstrap-social/bootstrap-social.css' %}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'pgowner_assets/bundles/datatables/datatables.min.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_assets/css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'pgowner_css/parsley.css' %}">
+  <!-- Custom style CSS -->
+
+  <link rel='shortcut icon' type='image/x-icon' href='pgowner_assets/img/favicon.ico' />
+</head>
+
+<body>
+<!--  <div class="loader"></div>-->
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg collapse-btn"><i
+                  class="fas fa-bars"></i></a></li>
+            <li>
+
+            </li>
+          </ul>
+        </div>
+        <ul class="navbar-nav navbar-right">
+        <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i class="fas fa-expand"></i>
+              </a>
+        </li>
+          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+              class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+            <div class="dropdown-menu dropdown-list dropdown-menu-right">
+              <div class="dropdown-header">Booking Details
+                <div class="float-right">
+                  <a href="#"></a>
+                </div>
+              </div>
+              <div class="dropdown-list-content dropdown-list-icons">
+                  {% for val in bd %}
+                <a href="#" class="dropdown-item dropdown-item-unread">
+                  <span class="dropdown-item-icon bg-primary text-white">
+                    <i class="fas fa-shopping-cart"></i>
+                  </span>
+                  <span class="dropdown-item-desc">Name:
+                      {{val.user_id.user_name}}
+                  </span>
+
+                  <span class="dropdown-item-desc">PG:
+                      {{val.pg_id.pg_name}}
+                  </span>
+                    <td>
+                  <span class="time">Date:
+                      {{val.booking_date}}
+                  </span>
+                    </td>
+
+                </a>
+                {% endfor %}
+              </div>
+              <div class="dropdown-footer text-center">
+                <a href="/pgowner/owner_bookingdetails/">View All <i class="fas fa-chevron-right"></i></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="dropdown"><a href="#" data-toggle="dropdown"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+              <img alt="image" src="{% static 'images/download.png' %}" class="user-img-radious-style">
+              <span class="d-sm-none d-lg-inline-block"></span></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-title"></div>
+              <a href="/pgowner/owner_edit/" class="dropdown-item has-icon">
+                <i class="far fa-user"></i> Profile
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="/pgowner/owner_logout/" class="dropdown-item has-icon text-danger">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="index.html">
+              <img alt="image" src="{% static 'pgowner_assets/img/logo.png' %}" class="header-logo"/>
+              <span class="logo-name">Grexa</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Main</li>
+
+            <a>
+              <a href="/pgowner/pg_index/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fas fa-home"></i><span>&nbsp&nbsp&nbspIndex</span></font></a>
+            </a>
+
+            <a>
+                <a href="/pgowner/user_view/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fab fa-gg"></i><span>&nbsp&nbsp&nbspUsers</span></font></a>
+            </a>
+
+          <!-- <a>
+                <a href="/pgowner/owner/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fab fa-gg"></i><span>&nbsp&nbsp&nbspPG-Owner</span></font></a>
+            </a> -->
+
+
+
+            <a>
+                <a href="/pgowner/owner_facility/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="far fa-envelope"></i><span>&nbsp&nbsp&nbspFaclities</span></font></a>
+            </a>
+
+            <a>
+                <a class="nav-link" href="/pgowner/owner_area/"><font color="white" size="3px"><i class="fas fa-layer-group"></i><span>&nbsp&nbsp&nbspArea</span><b class="badge badge-danger"></b></font></a>
+            </a>
+
+                <li class="menu-header">PG Details</li>
+
+                <a>
+                  <a href="/pgowner/owner_pgowner/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fas fa-leaf"></i><span>&nbsp&nbsp&nbspPG-Details</span></font></a>
+  
+              </a>    
+
+            <a>
+                <a href="/pgowner/owner_pgmenu/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fas fa-leaf"></i><span>&nbsp&nbsp&nbspPG-Menu</span></font></a>
+
+            </a>
+
+            <a>
+                <a href="/pgowner/owner_gallery/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fab fa-wpforms"></i><span>&nbsp&nbsp&nbspPG-Gallery</span></font></a>
+            </a>
+
+            <a>
+                <a href="/pgowner/owner_feedback/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fab fa-buromobelexperte"></i><span>&nbsp&nbsp&nbspPG-Feedback</span></font></a>
+
+            </a>
+
+            <li class="menu-header">Details</li>
+            <a class="dropdown">
+                <a href="/pgowner/owner_bookingdetails/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fab fa-google"></i><span>&nbsp&nbsp&nbspBooking Details</span></font></a>
+            </a>
+
+            <a>
+                <a href="/pgowner/owner_inquiry/" class="nav-link has-dropdown"><font color="white" size="3px"><i class="fas fa-map-marked-alt"></i><span>&nbsp&nbsp&nbspInquiry</span></font></a>
+            </a>
+
+
+            <li class="menu-header">Reports</li>
+            <li class="dropdown">
+                <li><a class="nav-link" href="/pgowner/report1/">Booking Details1</a></li>
+                <li><a class="nav-link" href="/pgowner/report2/">Booking Details2 </a></li>
+                <li><a class="nav-link" href="/pgowner/count_report/">Report</a></li>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    <div class="settingSidebar">
+			<a href="javascript:void(0)" class="settingPanelToggle"> <i
+				class="fa fa-spin fa-cog"></i>
+			</a>
+			<div class="settingSidebar-body ps-container ps-theme-default">
+				<div class=" fade show active">
+					<div class="setting-panel-header">Theme Customizer</div>
+					<div class="p-15 border-bottom">
+						<h6 class="font-medium m-b-10">Theme Layout</h6>
+						<div class="selectgroup layout-color w-50">
+							<label> <span class="control-label p-r-20">Light</span>
+								<input type="radio" name="custom-switch-input" value="1"
+								class="custom-switch-input" checked> <span
+								class="custom-switch-indicator"></span>
+							</label>
+						</div>
+						<div class="selectgroup layout-color  w-50">
+							<label> <span class="control-label p-r-20">Dark&nbsp;</span>
+								<input type="radio" name="custom-switch-input" value="2"
+								class="custom-switch-input"> <span
+								class="custom-switch-indicator"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="p-15 border-bottom">
+					<h6 class="font-medium m-b-10">Sidebar Colors</h6>
+					<div class="sidebar-setting-options">
+						<ul class="sidebar-color list-unstyled mb-0">
+							<li title="white" class="active">
+								<div class="white"></div>
+							</li>
+							<li title="blue">
+								<div class="blue"></div>
+							</li>
+							<li title="coral">
+								<div class="coral"></div>
+							</li>
+							<li title="purple">
+								<div class="purple"></div>
+							</li>
+							<li title="allports">
+								<div class="allports"></div>
+							</li>
+							<li title="barossa">
+								<div class="barossa"></div>
+							</li>
+							<li title="fancy">
+								<div class="fancy"></div>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="p-15 border-bottom">
+					<h6 class="font-medium m-b-10">Theme Colors</h6>
+					<div class="theme-setting-options">
+						<ul class="choose-theme list-unstyled mb-0">
+							<li title="white" class="active">
+								<div class="white"></div>
+							</li>
+							<li title="blue">
+								<div class="blue"></div>
+							</li>
+							<li title="coral">
+								<div class="coral"></div>
+							</li>
+							<li title="purple">
+								<div class="purple"></div>
+							</li>
+							<li title="allports">
+								<div class="allports"></div>
+							</li>
+							<li title="barossa">
+								<div class="barossa"></div>
+							</li>
+							<li title="fancy">
+								<div class="fancy"></div>
+							</li>
+							<li title="cyan">
+								<div class="cyan"></div>
+							</li>
+							<li title="orange">
+								<div class="orange"></div>
+							</li>
+							<li title="green">
+								<div class="green"></div>
+							</li>
+							<li title="red">
+								<div class="red"></div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="p-15 border-bottom">
+					<h6 class="font-medium m-b-10">Layout Options</h6>
+					<div class="theme-setting-options">
+						<label> <span class="control-label p-r-20">Compact
+								Sidebar Menu</span> <input type="checkbox"
+							name="custom-switch-checkbox" class="custom-switch-input"
+							id="mini_sidebar_setting"> <span
+							class="custom-switch-indicator"></span>
+						</label>
+					</div>
+				</div>
+				<div class="mt-3 mb-3 align-center">
+					<a href="#"
+						class="btn btn-icon icon-left btn-outline-primary btn-restore-theme">
+						<i class="fas fa-undo"></i> Restore Default
+					</a>
+				</div>
+			</div>
+		</div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; 2020 <div class="bullet"></div> Design By <a href="#">Snkthemes</a>
+        </div>
+        <div class="footer-right">
+        </div>
+      </footer>
+    </div>
+  <!-- General JS Scripts -->
+  <script src="{% static 'pgowner_assets/js/app.min.js' %}"></script>
+  <!-- JS Libraies -->
+  <script src="{% static 'pgowner_assets/bundles/chartjs/chart.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/apexcharts/apexcharts.min.js' %}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{% static 'pgowner_assets/bundles/datatables/datatables.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/datatables/export-tables/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/datatables/export-tables/buttons.flash.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/datatables/export-tables/jszip.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/datatables/export-tables/pdfmake.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/datatables/export-tables/vfs_fonts.js' %}"></script>
+  <script src="{% static 'pgowner_assets/bundles/datatables/export-tables/buttons.print.min.js' %}"></script>
+  <script src="{% static 'pgowner_assets/js/page/datatables.js' %}"></script>
+  <script src="{% static 'pgowner_assets/js/page/index2.js' %}"></script>
+  <!-- Template JS File -->
+  <script src="{% static 'pgowner_assets/js/scripts.js' %}"></script>
+
+</body>
+
+
+<!-- Mirrored from radixtouch.in/templates/snkthemes/grexa/source/light/export-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Dec 2020 06:16:34 GMT -->
+</html>

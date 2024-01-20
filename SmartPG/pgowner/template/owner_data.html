@@ -1,0 +1,11 @@
+
+{% load static %}
+    {% for val in b %}
+
+       <tr onclick="update({{val.pg_name}})">
+       <td>{{val.booking_id}}</td>
+       <td>{{val.booking_date}}</td>
+       <td>{{val.user_id.user_name}}</td>
+       <td>{{val.pg_id.pg_name}}</td>
+       </tr>
+    {% endfor %}

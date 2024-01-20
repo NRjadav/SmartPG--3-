@@ -1,0 +1,129 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="dashboard-sidebar">
+                        <div class="db-user-profile">
+                            <div class="db-user-img"> <img src="images/dashboard-profile.jpg" alt="" class="img-circle"></div>
+                            <div class="db-user-info">
+                                <h3 class="db-user-name">Anita Parmar</h3>
+                                <small><a href="#">Edit Profile</a></small>
+                            </div>
+                        </div>
+                        <div class="dashboard-sidenav">
+                            <ul>
+                                
+
+
+                                <li><a href="/client/partner_dashboard/">Dashboard</a></li>
+                                <li class="active"><a href="/client/manage_dashboard/">Manage Service</a></li>
+                                <li><a href="/client/order_dashboard/">My Order</a></li>
+                                <li><a href="/client/withdraw/">Withdraw</a></li>
+                                <li><a href="/client/inbox_dashboard/">Inbox</a></li>
+                                <li><a href="/client//">Profile</a></li>
+                                <li><a href="index.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="dashboard-box">
+                            <div class="dashboard-head">
+                                <h3 class="dashboard-head-title">All Service(s)</h3>
+                            </div>
+                            <div class="dashboard-data">
+                                <div class="manage-service-box">
+                                    <div class="filter">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select class="form-control selectpicker">
+                                                    <option>Type of Service</option>
+                                                    <option>Hostel</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-2"><a href="#" class="btn btn-secondary">Filter</a></div>
+                                            <div class="col-lg-4"><a href="#" class="btn btn-default">Add New Service</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <ul class="listnone">
+                                        <li class="service-list-head">
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-1 col-sm-1 col-xs-2">
+                                                    <div class="service-list-image">Image</div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3">
+                                                    <div class="service-list-type">Type of Hostel</div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="service-list-title">Hostel</div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-2">
+                                                    <div class="service-list-price">Price</div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-2">
+                                                    <div class="service-list-action">Actions</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="service-item">
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-1 col-sm-1 col-xs-2">
+                                                    <div class="service-item-img"><img src="images/hostel-service.jpg" class="img-responsive"></div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3">
+                                                    <div class="service-item-type">
+                                                        <h5>Boutique Hostels</h5></div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="service-item-title">Hostel Title</div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-2">
+                                                    <div class="service-item-price">$20.00</div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-2">
+                                                    <div class="service-item-action"><a href="#" class="trash"><i class="fa fa-trash "></i> </a>
+                                                        <a href="#" class="edit"><i class="fa fa-edit"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="service-item">
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-1 col-sm-1 col-xs-2">
+                                                    <div class="service-item-img"><img src="images/hostel-service.jpg" class="img-responsive"></div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3">
+                                                    <div class="service-item-type">
+                                                        <h5>Boutique Hostels</h5></div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="service-item-title">Hostel Title</div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-2">
+                                                    <div class="service-item-price">$20.00</div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-2">
+                                                    <div class="service-item-action"><a href="#" class="trash"><i class="fa fa-trash "></i> </a>
+                                                        <a href="#" class="edit"><i class="fa fa-edit"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+   {% endblock %}

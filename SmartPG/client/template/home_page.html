@@ -1,0 +1,189 @@
+{% extends 'client_header.html'%}
+{% load static %}
+{% block content %}
+    <div class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-10 col-xs-10">
+                    <div class="search-block">
+                        <div class="search-head">
+                            <h1 class="display-1">Find Great PG Details</h1>
+                            <p class="hidden-xs"></p>
+                        </div>
+                        <div class="search-box">
+                            <div class="search-form">
+                                <form class="row" method="POST" action="/client/display_pg/" onsubmit="return validateForm();">
+                                    {% csrf_token %}
+                                    <div class="col-md-5 col-sm-4 form-field">
+                                        <label for="selectpg" class="control-label sr-only">Destination</label>
+                                        <select id="selectpg" name="selectpg" class="form-control selectpicker" required>
+                                            <option value=""  selected>Select PG Type</option>
+                                            {% for val in t %}
+                                            <option name="pg_name" value="{{val.pg_id}}">{{val.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5 col-sm-6 form-field">
+                                        <label for="selectbasic" class="control-label sr-only">Guest</label>
+                                        <select id="selectbasic" name="selectbasic" class="form-control selectpicker" required>
+                                            <option value=""  selected>Select Area</option>
+                                            {% for val in a %}
+                                                <option value="{{val.area_id}}" name="area">{{val.area_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12 form-field">
+                                        <button class="btn btn-default btn-block btn-lg" type="submit">Search PG</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-medium">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-title text-center">
+                        <!-- section title start-->
+                        <h2>Most Popular Paying Guest</h2>
+                        <p>Discover incredible PG in the heart of the city.</p>
+                    </div>
+                    <!-- /.section title start-->
+                </div>
+            </div>
+
+            <div class="row">
+                {% for x in p %}
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                    <div class="hostel-thumbnail-list">
+
+                        <!-- hostel thumbnail list -->
+                        <div class="hostel-list-img">
+                            <a href="/client/hostel_page/{{x.pg_id}}"><img src="{{x.img.url}}" height="300px" width="500px"></a>
+                            <form method="post" action="/client/insert_wishlist/">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{x.pg_id}}" name="pg_id" id="pg_id" re>
+                                <input type="hidden" value="{{user_id}}" name="user_id" id="user_id">
+                                <div class="hostel-wishlist">
+                                    <input type="submit" class="wishlist-heart">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="hostel-content">
+                            <div class="hostel-head">
+                                <h3 class="hostel-title"><a href="hostel-single-page.html" class="title">{{x.pg_name}}</a></h3>
+                            </div>
+                        <div class="hostel-meta">
+                        <span class="hostel-price"><span class="price-from"><img src="{% static 'images/rupee.jpg' %}" height="15px" class="img-circle" ></span> <span class="price">{{x.amount}}</span></span>
+
+                                <span class="hostel-rating">
+                                    Ratings:
+                                            {% for x1 in rate %}
+
+                                                {% if x.pg_id == x1.feedback_id %}
+                                                <span class="reviews">{{x.avg}}</span>
+                                                {% if x1.AVG == 5 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+
+                                                {% elif x1.AVG == 4.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% elif x1.AVG == 3.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% elif x1.AVG == 2.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% elif x1.AVG == 1.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% endif %}
+                                                {% endif %}
+                                    {% endfor %}
+                                    <span class="reviews"></span>
+                                </span>
+                        </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /.hostel thumbnail list -->
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+<!--    -->
+    <div class="space-medium bg-default">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-title text-center">
+                        <!-- section title start-->
+                        <h2 class="title-white">Help You Meet The World</h2>
+                    </div>
+                    <!-- /.section title start-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="feature feature-center">
+                        <div class="feature-icon"><i class="fa fa-search"></i></div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Hostels you’ll love</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="feature feature-center">
+                        <div class="feature-icon"><i class="fa fa-heart"></i></div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Instant Confirmation</h3>
+                            <p> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="feature feature-center">
+                        <div class="feature-icon"><i class="fa fa-gratipay"></i></div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">24/7 Customer Service</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!---->
+
+<!---->
+    <!-- /.newsletter -->
+
+{% endblock %}

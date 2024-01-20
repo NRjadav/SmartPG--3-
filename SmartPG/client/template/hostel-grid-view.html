@@ -1,0 +1,240 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $("#orderby").change(function(){
+            var val=$(this).val();
+                 $.ajax({
+                 url:'/client/sort_hostel/',
+                 data:{'sort':val},
+                 success: function(data){
+                     $("#product").html(data);
+                 }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#pgname").change(function(){
+            var val=$(this).val();
+            
+            $.ajax({
+            url:'/client/sort_hostel/',
+            data:{'sort':val},
+            success: function(data){
+
+                $("#product").html(data);
+            }
+            });
+        });
+    });
+
+</script>
+
+<div class="page-header" xmlns="http://www.w3.org/1999/html">
+        <!-- page header -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- page title -->
+                    <h1 class="page-title">PG List</h1>
+                </div>
+                <!-- /.page title -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- breadcrumb -->
+                    <ol class="breadcrumb">
+                        <li><a href="/client/home_page/">Home</a></li>
+                        <li class="active">PG List</li>
+                    </ol>
+                </div>
+                <!-- /.breadcrumb -->
+            </div>
+        </div>
+    </div>
+    <!-- /.page header -->
+    <div class="content">
+        <!-- content -->
+       <div class="listing-search-box">
+            <!-- search bg-->
+            <div class="container">
+                <div class="row">
+                    <div class="search-form">
+                        <form class="row" method="POST" action="/client/display_pg/" onsubmit="return validateForm();">
+                            {% csrf_token %}
+                            <div class="col-md-5 col-sm-4 form-field">
+                                <label for="selectpg" class="control-label sr-only">Destination</label>
+                                <select id="selectpg" name="selectpg" class="form-control selectpicker" required>
+                                    <option value="" disabled selected>Select PG Type</option>
+                                    {% for val in t %}
+                                    <option name="pg_name" value="{{val.pg_id}}">{{val.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-5 col-sm-6 form-field">
+                                <label for="selectbasic" class="control-label sr-only">Guest</label>
+                                <select id="selectbasic" name="selectbasic" class="form-control selectpicker" required>
+                                    <option value="" disabled selected>Select Area</option>
+                                    {% for val in a %}
+                                        <option value="{{val.area_id}}" name="area">{{val.area_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-12 form-field">
+                                <button class="btn btn-default btn-block btn-lg" type="submit">Search PG</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="container">
+                <div class="row">
+                   
+                    <div class="col-lg-12 col-md-8 col-sm-8 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="list-sorting">
+                                    <select class="form-control selectpicker" id="orderby">
+                                        <option>Price</option>
+                                        <option value="1">Low to High</option>
+                                        <option value="2">High to Low</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                <div class="list-sorting">
+                                    <select class="form-control selectpicker" id="pgname">
+                                        <option value="pg_name">PG Name</option>
+                                        <option value="3">Name (A-Z)</option>
+                                        <option value="4">Name (Z-A)</option>
+                                    </select>
+                                </div>
+                            </div>
+                         
+                        </div>
+
+
+                        <div class="row" id="product">
+                           {% for val in pd %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="hostel-thumbnail-list">
+                                    <!-- hostel thumbnail list -->
+                                    <div class="hostel-list-img">
+                                        <a href="/client/hostel_page/{{val.pg_id}}"><img src="{{val.img.url}}"  height="300px" width="300px" ></a>
+                                        <form method="post" action="/client/insert_wishlist/">
+                                            {% csrf_token %}
+                                            <input type="hidden" value="{{val.pg_id}}" name="pg_id" id="pg_id">
+                                            <input type="hidden" value="{{user_id}}" name="user_id" id="user_id">
+                                            <div class="hostel-wishlist">
+                                                <input type="submit" class="wishlist-heart">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="hostel-content">
+                                        <div class="hostel-head">
+                                            <a href="/client/hostel_page/{{val.pg_id}}"><h3 class="hostel-name">{{val.pg_name}}</h3></a>
+                                            <p class="hostel-address">{{val.address}}</p>
+                                        </div>
+                                        <div class="hostel-meta">
+                                            <span class="hostel-price"><span class="price-from"><img src="{% static 'images/rupee.jpg' %}" height="15px" class="img-circle" >
+                                                <span class="price">{{val.amount}}</span></span>
+                                            </span>
+                                            <span class="hostel-rating">
+                                            Ratings:
+                                            {% for x in rate %}
+
+                                                {% if val.pg_id == x.feedback_id %}
+                                                {% if x.AVG == 5.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+
+                                                {% elif x.AVG == 4.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% elif x.AVG == 3.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% elif x.AVG == 2.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% elif x.AVG == 1.0000 %}
+                                                    <span class="rate">
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.hostel thumbnail list -->
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
+                            <div class="row">
+                            
+<!--                                <ul class="pagination">-->
+<!--                                    <li class="active"><a href="#">1</a></li>-->
+<!--                                    <li><a href="#">2</a></li>-->
+<!--                                    <li><a href="#">3</a></li>-->
+<!--                                    <li><a href="#">4</a></li>-->
+<!--                                    <li><a href="#">5</a></li>-->
+<!--                                    <li>-->
+<!--                                        <a href="#" aria-label="Next">-->
+<!--                                          <span aria-hidden="true">&raquo;</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+
+                                {% if pd.has_other_pages %}
+                                  <ul class="pagination">
+                                    {% if pd.has_previous %}
+                                      <li><a href="?page={{ pd.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                      <li class="disabled"><span>&laquo;</span></li>
+                                    {% endif %}
+                                    {% for i in pd.paginator.page_range %}
+                                      {% if users.number == i %}
+                                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                      {% else %}
+                                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                      {% endif %}
+                                    {% endfor %}
+                                    {% if pd.has_next %}
+                                      <li><a href="?page={{ pd.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                      <li class="disabled"><span>&raquo;</span></li>
+                                    {% endif %}
+                                  </ul>
+                                {% endif %}
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

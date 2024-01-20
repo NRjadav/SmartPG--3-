@@ -1,0 +1,78 @@
+{% load static %}
+
+{% for val in product %}
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="hostel-thumbnail-list-block">
+                                    <div class="row">
+                                        <!-- hostel-thumbnail-list-block -->
+                                        <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 nopadding">
+                                            <div class="hostel-list-img">
+                                                <a href="/client/hostel_page/{{val.pg_id}}"><img src="{% static 'images/' %}{{val.img}}"  height="180px" width="180px" ></a>
+                                                <form method="post" action="/client/insert_wishlist/">
+                                                    {% csrf_token %}
+                                                        <input type="hidden" value="{{val.pg_id}}" name="pg_id" id="pg_id">
+                                                        <input type="hidden" value="{{user_id}}" name="user_id" id="user_id">
+                                                        <div class="hostel-wishlist">
+                                                        <input type="submit" class="wishlist-heart">
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 nopadding">
+                                            <div class="hostel-content">
+                                                <div class="hostel-head">
+                                                    <a href="/client/hostel_page/{{val.pg_id}}"><h3 class="hostel-name">{{val.pg_name}}</h3></a>
+                                                    <p class="hostel-address">{{val.address}}</p>
+                                                </div>
+                                                <div class="hostel-meta">
+                                                    <div class="hostel-meta">
+                                                    <span class="hostel-price"><span class="price-from"><img src="{% static 'images/rupee.jpg' %}" height="15px" class="img-circle" ><span class="price">{{val.amount}}</span>
+                                                    </span></span>
+                                                    </div>
+                                                      <span class="hostel-rating">
+                                                          Ratings:
+                                                            {% for x in rate %}
+
+                                                                {% if val.pg_id == x.feedback_id %}
+
+                                                                {% if x.AVG == 5.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 4.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 3.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 2.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 1.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% endif %}
+                                                                {% endif %}
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+{% endfor %}

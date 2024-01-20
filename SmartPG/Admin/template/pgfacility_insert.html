@@ -1,0 +1,62 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.0/parsley.min.js"></script>
+
+<!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Advanced Forms</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#">Forms</a></div>
+              <div class="breadcrumb-item">Advanced Forms</div>
+            </div>
+          </div>
+          <div class="section-body">
+              <div class="row">
+                <div class="col- col-md- col-lg-">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Input Text</h4>
+                  </div>
+                       <div class="form-group">
+                        <label>Enter Area</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-pincode">
+                                 <i class="fas  fa-pincode"></i>
+                              </div>
+                            </div>
+                              <select class="form-control" name="area_id">
+
+                                {% for val in a %}
+
+                                <option value="{{val.area_id}}">{{val.area_name}}</option>
+
+                                {% endfor %}
+                              </select>
+
+                                <div class="form-group row mb-4">
+                                  <label class="col-form-label text-md-right col-11 col-md-4 col-lg-4"></label>
+                                  <div class="col-sm-12 col-md-7">
+                                    <tr>
+
+                                      <td><input  type="submit" value="insert"></td>
+
+                                    </tr>
+                                  </div>
+                                </div>
+                          </div>
+                       </div>
+                </div>
+                </div>
+              </div>
+          </div>
+        </section>
+      </div>
+
+{% endblock %}

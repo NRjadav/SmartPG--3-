@@ -1,0 +1,68 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="page-header">
+        <!-- page header -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- page title -->
+                    <h1 class="page-title">Contact us</h1>
+                </div>
+                <!-- /.page title -->
+                <div class="col-lg-12">
+                    <!-- breadcrumb -->
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Contact Us Page</li>
+                    </ol>
+                </div>
+                <!-- /.breadcrumb -->
+            </div>
+        </div>
+    </div>
+    <!-- /.page header -->
+    <div class="content">
+        <!-- content -->
+        <div class="content-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <div class="well-box">
+                            <h2>Have any questions? We're here to help!</h2>
+                            <p>For general inquiries and support, please fill out the form below.</p>
+                            <form  action="/client/insert_inquiry/" method="post">
+                                {% csrf_token %}
+                                <div>
+                                    <label for="email">Email address<span class="required">*</span> </label>
+                                    <input type="text" class="form-control" name="email" id="email" value="{{ request.session.email }}">
+                                </div>
+
+                                <div>
+                                    <label for="email">Contact<span class="required">*</span> </label>
+                                    <input type="text" class="form-control" name="contact" id="contact" value="{{contact}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subject">About??<span class="required">*</span></label>
+                                    <input type="text" name="inquiry_title" class="form-control" id="inquiry_title">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Discription</label>
+                                    <textarea class="form-control" id="inquiry_type" name="inquiry_type" rows="6"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-default" type="submit"> Submit </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+     {% endblock %}

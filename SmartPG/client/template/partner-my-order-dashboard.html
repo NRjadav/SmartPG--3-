@@ -1,0 +1,164 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="dashboard-sidebar">
+                        <div class="db-user-profile">
+                            <div class="db-user-img"> <img src="images/dashboard-profile.jpg" alt="" class="img-circle"></div>
+                            <div class="db-user-info">
+                                <h3 class="db-user-name">Anita Parmar</h3>
+                                <small><a href="#">Edit Profile</a></small>
+                            </div>
+                        </div>
+                        <div class="dashboard-sidenav">
+                            <ul>
+                                
+
+
+                                <li><a href="/client/partner_dashboard/">Dashboard</a></li>
+                                <li><a href="/client/manage_dashboard/">Manage Service</a></li>
+                                <li class="active"><a href="/client/order_dashboard/">My Order</a></li>
+                                <li><a href="/client/withdraw/">Withdraw</a></li>
+                                <li><a href="/client/inbox_dashboard/">Inbox</a></li>
+                                <li><a href="partner-profile-dashboard.html">Profile</a></li>
+                                <li><a href="index.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="dashboard-box">
+                            <div class="dashboard-head">
+                                <h3 class="dashboard-head-title">My Order</h3>
+                            </div>
+                            <div class="dashboard-data">
+                                <div class="booking-filter">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <select class="form-control selectpicker">
+                                                <option>Service Type</option>
+                                                <option>1</option>
+                                                <option>1</option>
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <select class="form-control selectpicker">
+                                                <option>Status</option>
+                                                <option>1</option>
+                                                <option>1</option>
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <button class="btn btn-secondary">Filter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="booking-list">
+                                    <!-- booking list-->
+                                    <ul class="listnone">
+                                        <li class="booking-list-head">
+                                            <div class="row">
+                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                    <div class="booking-id">Id</div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booking-service">Service</div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="booking-status">Status / Payment</div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booking-total">Total (Deposite/ Remain) (USD)</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="booked-list-item">
+                                            <div class="row">
+                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                    <div class="booked-id">#1</div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-service">Hostel in United Kingdom</div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="booked-status">Paypal <span class="label label-danger">Refunded</span></div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-total">$1,824
+                                                        <div class="price-small">($912.00 / $912.00)</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="booked-list-item">
+                                            <div class="row">
+                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                    <div class="booked-id">#2</div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-service">Hostel in United Kingdom</div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="booked-status">Paypal <span class="label label-warning">On Hold</span></div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-total">$1,824
+                                                        <div class="price-small">($912.00 / $912.00)</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="booked-list-item">
+                                            <div class="row">
+                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                    <div class="booked-id">#3</div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-service">Hostel in United Kingdom</div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="booked-status">Paypal <span class="label label-success">Refunded</span></div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-total">$1,824
+                                                        <div class="price-small">($912.00 / $912.00)</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="booked-list-item">
+                                            <div class="row">
+                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                    <div class="booked-id">#4</div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-service">Hostel in United Kingdom</div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="booked-status">Paypal <span class="label label-danger">Refunded</span></div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="booked-total">$1,824
+                                                        <div class="price-small">($912.00 / $912.00)</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+    {% endblock %}

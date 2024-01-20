@@ -1,0 +1,131 @@
+{% extends 'pgowner_header.html' %}
+{% load static %}
+{% block content %}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.0/parsley.min.js"></script>
+
+<!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Advanced Forms</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#">Forms</a></div>
+              <div class="breadcrumb-item">Advanced Forms</div>
+            </div>
+          </div>
+          <div class="section-body">
+              <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Input Text</h4>
+                  </div>
+                  <form method="post" action="/pgowner/owner_pgmenu_insert/" enctype="multipart/form-data" id="form_sample_1" class="form-horizontal" data-parsley-validate="" >
+                      {% csrf_token %}
+
+
+
+                    <table>
+
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label>Enter PG-Name</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-area_name">
+                                 <i class="fas  fa-area_name"></i>
+                                </div>
+                            </div>
+                            <select class="form-control" name="pg_id" data-parsley-required="true" data-parsley-required-message="This field is required">
+
+                                {% for val in pid %}
+
+                                <option value="{{val.pg_name}}">{{val.pg_name}}</option>
+
+                                {% endfor %}
+                          </select>
+                              <br/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Enter Day</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-pincode">
+                                 <i class="fas  fa-pincode"></i>
+                              </div>
+                            </div>
+                              <select class="form-control" name="day_id" data-parsley-required="true" data-parsley-required-message="This field is required">
+
+                                {% for val,n in DAY_CHOICES %}
+
+                                <option value="{{val}}">{{val}}</option>
+
+                                {% endfor %}
+                          </select>
+                              <br/>
+                          </div>
+                       </div>
+                      <div class="form-group">
+                        <label>Enter Breakfast</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-pincode">
+                                 <i class="fas  fa-pincode"></i>
+                              </div>
+                            </div>
+                            <input type="text" name="breakfast" class="form-control pincode" data-parsley-required="true" data-parsley-required-message="This field is required">
+                        </div>
+
+                       <div class="form-group">
+                       <label>Enter Lunch</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-pincode">
+                                 <i class="fas  fa-pincode"></i>
+                              </div>
+                            </div>
+                            <input type="text" name="lunch" class="form-control pincode" data-parsley-required="true" data-parsley-required-message="This field is required">
+                        </div>
+                     
+                        <div class="form-group">
+                        <label>Enter Dinner</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-pincode">
+                                 <i class="fas  fa-pincode"></i>
+                              </div>
+                            </div>
+                            <input type="text" name="dinner" class="form-control pincode" data-parsley-required="true" data-parsley-required-message="This field is required">
+                          </div>
+                           
+                       
+                       
+                       <div class="form-group row mb-4">
+                           <label class="col-form-label text-md-right col-11 col-md-4 col-lg-4"></label>
+                           <div class="col-sm-12 col-md-7">
+                               <tr>
+                                   <td><input  type="submit" value="insert"></td>
+                               </tr>
+                           </div>
+                       </div>
+                          </div>
+                       </div>
+                        </div>
+                       </div>
+                      </div>
+                    </div>
+                    </table>
+                  </form>
+                </div>
+                </div>
+              </div>
+          </div>
+        </section>
+      </div>
+
+{% endblock %}

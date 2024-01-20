@@ -1,0 +1,341 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+<div class="single-page-header">
+        <!-- single page header -->
+        <div class="container">
+            {% for val in p %}
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <h1 class="single-page-title">{{val.pg_name}}</h1>
+                    <p>{{val.address}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="hostel-wishlist"><a href="#" class="wishlist-heart"></a></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- /.single page header -->
+    <div class="content">
+        <!-- content -->
+        <div class="content-area">
+            <div class="scroll-nav">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                            <ul>
+                                <li class="active"><a href="#overview" class="page-scroll">Overview</a></li>
+                                <li><a href="#amenities" class="page-scroll">amenities</a></li>
+                                <li><a href="#gallery" class="page-scroll">gallery</a></li>
+                                <li><a href="#reviews" class="page-scroll">Reviews</a></li>
+                                <li><a href="#faqs" class="page-scroll">faq</a></li>
+                            </ul>
+                        </div>
+                        {% for val in p %}
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="price-box">
+                                <h2 class="hostel-rate">
+                                    <span class="rate-from"><div class="rupee-img"> <img src="{% static 'images/rupee.jpg' %}" height="35px" class="img-circle" ></div><h2>{{val.amount}}</h2></span>
+                                </h2>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <div class="single-page-content">
+                            <div id="overview" class="well-box">
+                                <h2 class="small-header-title">Overview of PG</h2>
+                                <h3>About this PG</h3>
+                                {% for val in p %}
+
+                                <h4 class="pg-types{{val.pg_id}}">Type of PG:  {{val.pg_type}}</h4>
+                                <h5 class="address">{{val.address}}</h5>
+                                <ul class="listnone check-circle">
+                                    <li>{{val.description}}</li>
+                                </ul>
+                                 {% endfor %}
+                            </div>
+
+
+                            <div id="amenities" class="well-box">
+                                <h2 class="small-header-title">Amenities</h2>
+                                <p>A desirable or useful feature or facility of a hostel and places.</p>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                                        <ul class="listnone check-circle">
+                                        {% for x in f1 %}
+                                            <li>{{x.facility_id.facility_name}}</li>
+                                        {% endfor %}
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="amenities" class="well-box">
+                                <h2 class="small-header-title">Amenities</h2>
+                                <p>A desirable or useful feature or facility of a hostel and places.</p>
+                                <div class="row">
+                                    <div  class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <table border="1" style="height: 50px;width: 700px; justify-content: space-around; text-align: center;" >
+                                          <thead style="text-align: center;">
+                                            <tr>
+                                              <th style="text-align: center;" >Day</th>
+                                              <th style="text-align: center;">Breakfast</th>
+                                              <th style="text-align: center;">Lunch</th>
+                                              <th style="text-align: center;">Dinner</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% for item in week_menu %}
+                                              <tr>
+                                                <td>{{ item.day }}</td>
+                                                <td>{{ item.breakfast }}</td>
+                                                <td>{{ item.lunch }}</td>
+                                                <td>{{ item.dinner }}</td>
+                                              </tr>
+                                            {% endfor %}
+                                          </tbody>
+                                        </table>
+                                      </div>
+
+                                </div>
+                            </div>
+                           
+
+                            <div id="gallery" class="well-box">
+                                <h2 class="small-header-title">Gallery</h2>
+                                <p><a href="http://dimsemenov.com/plugins/magnific-popup/" target="_blank">Magnific popup</a>is a responsive lightbox &amp; dialog javascript image thumbnail gallery.</p>
+                                <div class="gallery-block">
+                                    {% for x in g %}
+                                    <a class="popup-link" href="{% static 'images/' %}{{x.gallery_name}}" >
+                                        <img src="{% static 'images/' %}{{x.gallery_name}}" height="150px" width="200px">
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div id="reviews" class="well-box">
+                                <h2 class="small-header-title">Reviews</h2>
+                                <p>Your trust is our top concern, so businesses can't pay to alter or remove their reviews. </p>
+
+                                <div class="review-content">
+                                    {% for x in f %}
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <div class="review-user">
+                                                <div class="user-img"> <img src="{% static 'images/download.png' %}" height="40px" class="img-circle"></div>
+                                                <h5 class="user-name">{{x.user_id.user_name}}</h5>
+<!--                                                <div class="user-reviews">1 Review</div>-->
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <span class="review-descriptions">
+                                                <h4 class="review-title">{{x.des}}</h4>
+
+                                                {% if x.rate == 1 %}
+                                                    <span class="rate"> <i class="fa fa-star"></i></span>
+                                                {% elif x.rate == 2 %}
+                                                    <span class="rate"><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                                                {% elif x.rate == 3 %}
+                                                    <span class="rate"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                                                {% elif x.rate == 4 %}
+                                                    <span class="rate"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>    
+                                                {% elif x.rate == 5 %}
+                                                    <span class="rate"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></i> <i class="fa fa-star"></i></span>
+                                                {% else %}
+                                                    <span class="rate"></span>
+                                                {% endif %}
+                                                <p>
+                                                    {{x.date}}
+                                                </p>
+                                            </span>
+                                        </div>
+                                        </div>
+                                    <hr>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="leave-review">
+                                    <h2 class="small-header-title">Leave a Review</h2>
+                                    <form action="/client/feedback_insert/" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+<!--                                            <div class="col-lg-6">-->
+<!--                                                <div class="form-group">-->
+<!--                                                        <label>User Name</label>-->
+                                                        <input type="hidden" class="form-control" name="user_id"  id="user_id" value="{{u}}" >
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div class="col-lg-6">-->
+<!--                                                <div class="form-group">-->
+<!--                                                        <label>PG name</label>-->
+                                                         <input type="hidden" class="form-control" name="pg_id"  id="pg_id" value={{p1}}>
+
+<!--                                                </div>-->
+
+<!--                                            </div>-->
+
+
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="title">Write Your Review</label>
+                                                    <textarea class="form-control" rows="5" name="feedback" id="feedback" placeholder="Write Your Review"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="filter-star-rating filter-box">
+                                <!-- star rating filter -->
+                                <h4 class="filter-lable-title">Star Rating</h4>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="rate" id="pg_type" value="5">
+                                        <span class="rate"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="rate" id="optionsRadios1" value="4">
+                                        <span class="rate">
+                                          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="rate" id="" value="3" >
+                                        <span class="rate"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="rate" id="optionsRadios1" value="2" >
+                                        <span class="rate"><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="rate" id="optionsRadios1" value="1" >
+                                        <span class="rate"> <i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                            </div>
+                                            <div class="col-lg-12">
+                                                <button type="submit" class="btn btn-default">Submit Review</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <div id="faqs" class="well-box">
+                                <h2 class="small-header-title">Frequently asked questions </h2>
+                                <p>Morbi mollis vestibulum sollicitudin.</p>
+                                <div class="faq-block">
+                                    <h4>Is Breakfast Included?</h4>
+                                    <p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum. Aenean id ullamcorper libero. Vestibulum imperdiet nibh vel magna lacinia ultrices. Sed id interdum urna. Nam ac elit a ante commodo tristique. </p>
+                                    <h4>Do I Have to Share a Room with the Opposite Sex?</h4>
+                                    <p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum. Aenean id ullamcorper libero. Vestibulum imperdiet nibh vel magna lacinia ultrices. Sed id interdum urna. Nam ac elit a ante commodo tristique. </p>
+                                    <h4>How Much Does a Hostel Cost?</h4>
+                                    <p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum. Aenean id ullamcorper libero. Vestibulum imperdiet nibh vel magna lacinia ultrices. Sed id interdum urna. Nam ac elit a ante commodo tristique. </p>
+                                    <h4>Do Hostels Have Age Limits?</h4>
+                                    <p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum. Aenean id ullamcorper libero. Vestibulum imperdiet nibh vel magna lacinia ultrices. Sed id interdum urna. Nam ac elit a ante commodo tristique. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="single-page-sidebar">
+                            <div class="widget widget-contact box-bg">
+                                <h3 class="widget-title">Contact Owner</h3>
+
+                                    {% for item in p %}
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <label>{{item.owner_id.owner_name}}</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email:</label>
+                                            <label>{{item.owner_id.email}}</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contact-No:</label>
+                                            <label>{{item.owner_id.contact}}</label>
+                                        </div>
+                                    {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="single-page-sidebar">
+                            <div class="widget widget-contact box-bg">
+                                <form method="post" action="/client/booking_insert/">
+                                    {% csrf_token %}
+                                <h3 class="widget-title">For booking PG</h3>
+
+                                    <input type="hidden" class="form-control" name="booking_status" value="0" id="booking_id">
+
+                                    <input type="hidden" class="form-control" name="user_id"  id="u_id" value={{u}} >
+
+
+                                    <input type="hidden" class="form-control" name="pg_id"  id="p_id" value={{p1}}>
+
+                                    {% for x in bd %}
+                                    <P>{{x.booking_date}}</P>
+                                    {% endfor %}
+
+
+                                        <div class="form-group">
+                                        </div>
+
+                                        <div class="form-group">
+                                        </div>
+
+                                        <div class="col-lg-">
+                                            <button type="submit" class="btn btn-default">Booking PG</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+"""
+Day   Breakfast  Lunch   Dinner
+Mon    chai        A       B
+Tue    chai        B       C
+"""

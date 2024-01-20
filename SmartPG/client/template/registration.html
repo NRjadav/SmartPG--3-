@@ -1,0 +1,70 @@
+{% extends 'client_header.html'%}
+{% load static %}
+{% block content %}
+    <div class="content">
+        <!-- content -->
+        <div class="content-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+                        <div class="well-box">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="singup-box">
+                                        <div class="singup-header">
+                                            <h3>Register New Account</h3>
+                                            <p>Create a new account for booking a hostel in your locations.</p>
+                                        </div>
+
+                                        <thead>
+                                        <tr>
+                                            <th>user_id</th>
+                                            <th>user_name</th>
+                                            <th>email</th>
+                                            <th>password</th>
+                                            <th>contact</th>
+                                            <th>area_id</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for val in user %}
+                                        <tr>
+                                            <td>{{val.user_id}}</td>
+                                            <td>{{val.user_name}}</td>
+                                            <td>{{val.email}}</td>
+                                            <td>{{val.password}}</td>
+                                            <td>{{val.contact}}</td>
+                                            <td>{{val.area_id_id}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+
+
+                                        <div class="singup-bottom">
+                                            <p class="pull-right">Registered Already? <a href="#" class="btn-link-primary"> Login here</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-offset-1 col-lg-5">
+                                    <div class="social-login-box">
+                                        <div class="login-header">
+                                            <h3>Sign Up via Social Accounts</h3>
+                                            <p>Use your social account for login.</p>
+                                        </div>
+                                        <div class="social-login">
+                                            <a href="#" class="btn facebook-btn"><span class="social-icon"><i class="fa fa-facebook"></i></span> Sign in with Facebook</a>
+                                            <a href="#" class="btn twitter-btn"><span class="social-icon"><i class="fa fa-twitter"></i></span> Sign in with Twitter</a>
+                                            <a href="#" class="btn google-btn"><span class="social-icon"><i class="fa fa-google"></i></span> Sign in with Google </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

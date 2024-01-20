@@ -1,0 +1,173 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+   
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="dashboard-sidebar">
+                        <div class="db-user-profile">
+                            <div class="db-user-img"> <img src="images/dashboard-profile.jpg" alt="" class="img-circle"></div>
+                            <div class="db-user-info">
+                                <h3 class="db-user-name">Anita Parmar</h3>
+                                <small><a href="#">Edit Profile</a></small>
+                            </div>
+                        </div>
+                        <div class="dashboard-sidenav">
+                            <ul>
+                                <li class="active"><a href="/client/partner_dashboard/">Dashboard</a></li>
+                                <li><a href="/client/manage_dashboard/">Manage Service</a></li>
+                                <li><a href="/client/order_dashboard/">My Order</a></li>
+                                <li><a href="/client/withdraw/">Withdraw</a></li>
+                                <li><a href="/client/inbox_dashboard/">Inbox</a></li>
+                                <li><a href="/client/owner_edit_profile/">Profile</a></li>
+                                <li><a href="/client/owner_logout/">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="dashboard-box">
+                            <div class="dashboard-head">
+                                <h3 class="dashboard-head-title">Sale Reports</h3>
+                            </div>
+                            <div class="dashboard-data">
+                                <div class="report-info">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="report-item">
+                                                <div class="report-item-title"> Total All Sales</div>
+                                                <h2 class="report-item-price">$0.00</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="report-item">
+                                                <div class="report-item-title"> Your Balance</div>
+                                                <h2 class="report-item-price">$0.00</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="report-item">
+                                                <div class="report-item-title"> Total All Bookings</div>
+                                                <h2 class="report-total-item">0</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter">
+                                    <h4 class="dashboard-title">Filter</h4>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="filter-service">
+                                                <p>Type of Service:
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> All
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" id="inlineCheckbox2" value="option2"> Hostel
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="filter-date-box">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                        <label for="date">Date from-to:</label>
+                                                        <div class="filter-by">
+                                                            <select class="form-control selectpicker" name="">
+                                                                <option value="today">Today</option>
+                                                                <option value="yesterday">Yesterday</option>
+                                                                <option value="this_week">This week</option>
+                                                                <option value="last_week">Last week</option>
+                                                                <option value="last_7days" selected="selected">Last 7 days</option>
+                                                                <option value="last_30days">Last 30 days</option>
+                                                                <option value="last_60days">Last 60 days</option>
+                                                                <option value="last_90days">Last 90 days</option>
+                                                                <option value="this_year">This Year</option>
+                                                                <option value="last_year">Last Year</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="from">From</label>
+                                                            <input type="email" class="form-control" id="from" placeholder="From">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="to">To</label>
+                                                            <input type="email" class="form-control" id="to" placeholder="To">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                        <button class="btn btn-default btn-block" type="submit">Go</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="report-content">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="report-item">
+                                                <div class="report-item-title"> Total All Sales</div>
+                                                <h2 class="report-item-price">$0.00</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="report-item">
+                                                <div class="report-item-title"> Total Items</div>
+                                                <h2 class="report-item-price">0</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div class="report-item">
+                                                <div class="report-item-title"> Total All Bookings</div>
+                                                <h2 class="report-total-item">0</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="report-table table-responsive">
+                                                <table class="report-total table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="report-th">Completed</th>
+                                                            <th class="report-th">Complete a Part</th>
+                                                            <th class="report-th">On Hold</th>
+                                                            <th class="report-th">Cancelled</th>
+                                                            <th class="report-th">Refunded</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="report-count">
+                                                                <span class="number">0</span> Booking </td>
+                                                            <td class="report-count">
+                                                                <span class="number">0</span> Booking </td>
+                                                            <td class="report-count">
+                                                                <span class="number">0</span> Booking </td>
+                                                            <td class="report-count">
+                                                                <span class="number">0</span> Booking </td>
+                                                            <td class="report-count">
+                                                                <span class="number">0</span> Booking </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+    {% endblock %}

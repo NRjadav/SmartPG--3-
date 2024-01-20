@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit client</title>
+</head>
+<body>
+
+<form method="post"  name="f1" action="/client/client_update/{{u.user_id}}">
+    {% csrf_token %}
+
+    <table>
+        <tr>
+            <td>Enter name</td>
+            <td><input type="text" name="user_name" value="{{u.user_name}}"></td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td><input type="text" name="email" value="{{u.email}}"></td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td><input type="text" name="password" value="{{u.password}}"></td>
+        </tr>
+        <tr>
+            <td>contact</td>
+            <td><input type="text" name="contact" value="{{u.contact}}"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="client_update"/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

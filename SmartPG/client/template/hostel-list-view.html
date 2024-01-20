@@ -1,0 +1,296 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $("#orderby").change(function(){
+            var val=$(this).val();
+            alert(val);
+                 $.ajax({
+                 url:'/client/hostel_sort/',
+                 data:{'sort':val},
+                 success: function(data){
+                 alert(data);
+                     $("#product").html(data);
+                 }
+            });
+        });
+    });
+
+</script>
+
+    <div class="page-header">
+        <!-- page header -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- page title -->
+                    <h1 class="page-title">Hostel List View</h1>
+                </div>
+                <!-- /.page title -->
+                <div class="col-lg-12">
+                    <!-- breadcrumb -->
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Hostel List View</li>
+                    </ol>
+                </div>
+                <!-- /.breadcrumb -->
+            </div>
+        </div>
+    </div>
+    <!-- /.page header -->
+    <div class="content">
+        <!-- content -->
+        <div class="listing-search-box">
+            <!-- search bg-->
+            <div class="container">
+                <div class="row">
+                    <div class="search-form">
+                        <form class="row" method="POST" action="/client/display_pg/">
+                            {% csrf_token %}
+                            <div class="col-md-5 col-sm-6 col-xs-12">
+                                <label for="selectpgdetails" class="control-label sr-only">PG-Details</label>
+                                <select id="selectpgdetails" name="selectpg" class="form-control selectpicker">
+                                    <option>PG-Type</option>
+
+                                    <option value="boy">BOY</option>
+                                    <option value="girl">GIRL</option>
+
+                                </select>
+                            </div>
+
+                     <div class="col-md-5 col-sm-6 col-xs-12">
+                                <label for="from" class="control-label sr-only">Area</label>
+                                <select id="selectbasic" name="selectbasic" class="form-control selectpicker">
+                                    <option>Area</option>
+                                    {% for val in a %}
+                                    <option value="{{val.area_id}}">{{val.area_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-12 col-xs-12">
+                                <button class="btn btn-default btn-block btn-lg" type="submit">Search Hostel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.search bg-->
+        <div class="content-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="search-filter-sidebar">
+                            <div class="filter-head">
+                                <h4 class="filter-title">Search for Hostel</h4></div>
+                            <div class="filter-star-rating filter-box">
+                                <!-- star rating filter -->
+                                <h4 class="filter-lable-title">Star Rating</h4>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        <span class="rate"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        <span class="rate">
+                                          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        <span class="rate"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        <span class="rate"><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        <span class="rate"> <i class="fa fa-star"></i></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /.star rating filter -->
+<!--                            <div class="filter-price filter-box">-->
+<!--                                <h4 class="filter-lable-title">Price </h4>-->
+<!--                                <label for="amount" class="sr-only"> </label>-->
+<!--                                <div id="price-range"></div>-->
+<!--                                <input type="text" id="amount" readonly class="amount">-->
+<!--                            </div>-->
+                            <div class="filter-facilities filter-box">
+                                <h4 class="filter-lable-title">Facilities </h4>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Alaram Clock
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Bathroom
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> iPod Dock
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Laptop Safe
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="list-sorting">
+                                    <select class="form-control btn-select selectpicker" id="orderby">
+                                        <option>Price</option>
+                                        <option value="price_asc">Low to High</option>
+                                        <option value="price_desc">High to Low</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="list-sorting">
+                                    <select class="form-control btn-select selectpicker">
+                                        <option value="">Name</option>
+                                        <!-- <option value="name_a_z">Name (A-Z)</option> -->
+                                        <option value="name_z_a">Name (A-Z)</option>
+                                        <option value="name_a_z">Name (Z-A)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="listing-views">
+                                    <a href="/client/hostel_view/" class="btn btn-primary btn-xs"><i class="fa fa-list-ul"></i> Gird View</a> <a href="/client/list_view/" class="btn btn-secondary btn-xs"><i class="fa fa-th"></i> List View </a> </div>
+                            </div>
+                        </div>
+                        <div class="row" id="product">
+                             {% for val in qs1 %}
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="hostel-thumbnail-list-block">
+                                    <div class="row">
+                                        <!-- hostel-thumbnail-list-block -->
+                                        <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 nopadding">
+                                            <div class="hostel-list-img">
+                                                <a href="/client/hostel_page/{{val.pg_id}}"><img src="{% static 'images/author.jpg' %}"  height="180px" width="180px" ></a>
+                                                <form method="post" action="/client/insert_wishlist/">
+                                                    {% csrf_token %}
+                                                        <input type="hidden" value="{{val.pg_id}}" name="pg_id" id="pg_id">
+                                                        <input type="hidden" value="{{c}}" name="user_id" id="user_id">
+                                                        <div class="hostel-wishlist">
+                                                        <input type="submit" class="wishlist-heart">
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 nopadding">
+                                            <div class="hostel-content">
+                                                <div class="hostel-head">
+                                                    <a href="/client/hostel_page/{{val.pg_id}}"><h3 class="hostel-name">{{val.pg_name}}</h3></a>
+                                                    <p class="hostel-address">{{val.address}}</p>
+                                                </div>
+                                                <div class="hostel-meta">
+                                                    <div class="hostel-meta">
+                                                    <span class="hostel-price"><span class="price-from"><img src="{% static 'images/rupee.jpg' %}" height="15px" class="img-circle" ><span class="price">{{val.amount}}</span>
+                                                    </span></span>
+                                                    </div>
+                                                      <span class="hostel-rating">
+                                                          Ratings:
+                                                            {% for x in rate %}
+
+                                                                {% if val.pg_id == x.feedback_id %}
+
+                                                                {% if x.AVG == 5.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 4.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 3.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 2.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% elif x.AVG == 1.0000 %}
+                                                                    <span class="rate">
+                                                                        <i class="fa fa-star"></i>
+                                                                    </span>
+                                                                {% endif %}
+                                                                {% endif %}
+                                                    </span>
+                                                    {% endfor %}
+                                                    <a href="/client/hostel_page/{{val.pg_id}}" class="btn-link-primary">View More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.hostel-thumbnail-list-block -->
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {% if qs1.has_other_pages %}
+                                  <ul class="pagination">
+                                    {% if qs1.has_previous %}
+                                      <li><a href="?page={{ qs1.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                      <li class="disabled"><span>&laquo;</span></li>
+                                    {% endif %}
+                                    {% for i in qs1.paginator.page_range %}
+                                      {% if qs1.number == i %}
+                                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                      {% else %}
+                                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                      {% endif %}
+                                    {% endfor %}
+                                    {% if qs1.has_next %}
+                                      <li><a href="?page={{ qs1.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                      <li class="disabled"><span>&raquo;</span></li>
+                                    {% endif %}
+                                  </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+     {% endblock %}

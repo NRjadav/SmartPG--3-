@@ -1,0 +1,5 @@
+{% load static %}
+
+{% for area in a %}
+    <li value="{{area.area_id }}"><a href="/client/area_pg/{{area.area_id}}">{{area.area_name}}</a></li>
+{% endfor %}

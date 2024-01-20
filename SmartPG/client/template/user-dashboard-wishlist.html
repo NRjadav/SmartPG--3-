@@ -1,0 +1,115 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="dashboard-sidebar">
+                        <div class="db-user-profile">
+                            
+                        </div>
+                        <div class="dashboard-sidenav">
+                            <ul>
+                                <li ><a href="/client/user_dashboard/">Dashboard</a></li>
+                                <li><a href="/client/client_edit/">Profile</a></li>
+                                <li><a href="/client/user_booking/">Your Booking</a></li>
+                                
+                                <li class="active"><a href="/client/wishlist/">Wishlist</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="dashboard-box">
+                            <div class="dashboard-head">
+                                <h3 class="dashboard-head-title">My Wishlist</h3>
+                            </div>
+                            <div class="dashboard-data">
+                                <div class="dashboard-wislist-box">
+                                    <ul class="wishlist-list">
+                                        {% for item in wish %}
+
+                                            <li class="wishlist-block">
+                                                <!-- wishlist block -->
+                                                <div class="row">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                        <div class="wishlist-img">
+                                                            <a href="#"><img src="{{item.img.url}}" style="height:120px;width:130px;" alt=""></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                        <div class="wishlist-content">
+                                                            <h4 class="hostel-title"><a href="#">{{item.pg_id.pg_name}}</a></h4>
+                                                            <div class="hostel-wishlist"></div>
+                                                            <p class="hostel-address">{{item.pg_id.address}}</p>
+                                                            <span class="hostel-rating">
+                                                            Ratings:
+                                                                    {% for val in rate %}
+
+                                                                        {% if item.pg_id_id == val.feedback_id %}
+
+                                                                        {% if val.AVG == 5.0000 %}
+                                                                            <span class="rate">
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                            </span>
+                                                                        {% elif val.AVG == 4.0000 %}
+                                                                            <span class="rate">
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                            </span>
+                                                                        {% elif val.AVG == 3.0000 %}
+                                                                            <span class="rate">
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                            </span>
+                                                                        {% elif val.AVG == 2.0000 %}
+                                                                            <span class="rate">
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                            </span>
+                                                                        {% elif val.AVG == 1.0000 %}
+                                                                            <span class="rate">
+                                                                                <i class="fa fa-star"></i>
+                                                                            </span>
+                                                                        {% endif %}
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                            </span>
+                                                            <br/>
+                                                            <span class="remove-wishlist"> <i class="fa fa-trash"></i> <a href="/client/wish_delete/{{item.wishlist_id}}">Remove</a></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                        <div class="wishlist-action">
+
+                                                            <div class="price"><img src="{% static 'images/rupee.jpg' %}" height="15px" class="img-circle" >{{item.pg_id.amount}}</div>
+                                                            <a href="/client/hostel_view/" class="btn btn-default btn-sm">View Details</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                        <!-- wishlist block -->
+
+                                        <!-- wishlist block -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+
+{% endblock %}

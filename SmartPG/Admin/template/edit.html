@@ -1,0 +1,61 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+             </div>
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                              <form method="post" name="f1" action="/update/{{area.area_id}}">
+                                            {% csrf_token %}
+
+                               <div class="col- col-md- col-lg-">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4>Edit Text</h4>
+                                  </div>
+                                    <div class="card-body">
+                                      <div class="form-group">
+                                        <label>Name</label>
+                                          <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <div class="input-group-area_name">
+                                                 <i class="fas  fa-area_name"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" name="area_name" value="{{area.area_name}}" class="form-control area_name">
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="form-group">
+                                        <label>Pincode</label>
+                                          <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <div class="input-group-pincode">
+                                                 <i class="fas  fa-pincode"></i>
+                                              </div>
+                                            </div>
+                                            <input type="text" name="pincode" value="{{area.pincode}}" class="form-control pincode">
+                                        </div>
+                                    </div>
+                                    <tr>
+                                        <td> <input type="submit" value="update"/> </td>
+                                    </tr>
+                                    </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+        {% endblock %}

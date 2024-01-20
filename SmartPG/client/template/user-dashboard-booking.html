@@ -1,0 +1,112 @@
+{% extends 'client_header.html'%}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="dashboard-sidebar">
+                        <div class="db-user-profile">
+                            
+                        </div>
+                        <div class="dashboard-sidenav">
+                            <ul>
+                                <li ><a href="/client/user_dashboard/">Dashboard</a></li>
+                                <li><a href="/client/client_edit/">Profile</a></li>
+                                <li class="active"><a href="/client/user_booking/">Your Booking</a></li>
+                                
+                                <li><a href="/client/wishlist/">Wishlist</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="dashboard-box">
+                            <div class="dashboard-head">
+                                <h3 class="dashboard-head-title">Booking History</h3>
+                            </div>
+                                <div class="dashboard-data">
+                                    <div class="dashboard-booking-block">
+                                        <div class="booking-filter">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="booking-list">
+                                            <ul class="listnone">
+                                                <li class="booking-list-head">
+                                                    <div class="row">
+                                                        <div class="col-lg- col-md- col-sm- col-xs-1">
+                                                            <div class="booking-id">Id</div>
+                                                        </div>
+                                                        <div class="col-lg- col-md- col-sm- col-xs-3">
+                                                            <div class="booking-service">PG Name</div>
+                                                        </div>
+                                                         <div class="col-lg- col-md- col-sm- col-xs-3">
+                                                            <div class="booking-service">Date</div>
+                                                        </div>
+                                                        <div class="col-lg- col-md- col-sm- col-xs-3">
+                                                            <div class="booking-status">Status</div>
+                                                        </div>
+                                                        <div class="col-lg- col-md- col-sm- col-xs-">
+                                                            <div class="booking-total">Amount</div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                 {% for v in b %}
+                                                <li class="booked-list-item">
+                                                    <div class="row">
+                                                        <div class="col-lg- col-md- col-sm- col-xs-1">
+                                                            <div class="booked-id">{{v.user_id.user_name}}</div>
+                                                        </div>
+                                                        <div class="col-lg- col-md- col-sm- col-xs-3">
+                                                            <div class="booked-service">{{v.pg_id.pg_name}}</div>
+                                                        </div>
+                                                        <div class="col-lg- col-md- col-sm- col-xs-3">
+                                                            <div class="booked-status">{{v.booking_date}}<span class="label label-danger"></span></div>
+                                                        </div>
+                                                        <div class="col-lg- col-md- col-sm- col-xs-1">
+                                                            <div class="booked-id">{{v.booking_status}}</div>
+                                                        </div>
+                                                        <div class="col-lg- col-md-3 col-sm-4 col-xs-">
+                                                            <div class="booked-total" style="margin-left: 125px;">{{v.pg_id.amount}}</div>
+                                                        </div>
+                                                            <div class="price-small"></div>
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+
+                                            </ul>
+
+                                        </div>
+                                        <!-- /.booking list-->
+                                    </div>
+                                </div>
+                            </div>
+                            <form action="/client/user_booking/" method="POST">
+                                {% csrf_token %}
+                                <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                        data-key="rzp_test_bilBagOBVTi4lE"
+                                        data-amount="{{order_amount}}"
+                                        data-currency="INR"
+                                        data-order_id="{{ order_id }}"
+                                        data-buttontext="Pay with Razorpay"
+                                        data-name="Your Company Name"
+                                        data-description="Payment for your order"
+                                        data-image="path/to/your/logo.png"
+                                        data-prefill.name="Your Name"
+                                        data-prefill.email="your@email.com"
+                                        data-prefill.contact="1234567890"
+                                        data-theme.color="#F37254">
+                                </script>
+                                <input type="hidden" custom="Hidden Element" name="hidden">
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

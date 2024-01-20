@@ -1,0 +1,68 @@
+{% extends 'pgowner_header.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+<div class="main-content" xmlns="http://www.w3.org/1999/html">
+        <section class="section">
+          <div class="section-header">
+            <h1>Advanced Forms</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#">Forms</a></div>
+              <div class="breadcrumb-item">Advanced Forms</div>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="row">
+              <form method="post" action="/pgowner/gallery_ins/" enctype="multipart/form-data" id="form_sample_1" class="from-horizontal">
+                {% csrf_token %}
+
+              <div class="col-12 col-md-10 col-lg-10">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Input Text</h4>
+                  </div>
+
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label>Name</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-name">
+                                 <i class="fas  fa-name"></i>
+                              </div>
+                            </div>
+                          </div>
+                            <img src="" height="200" width="200" name="output" id="output"/>
+                            <input type="file" name="gallery_name" id="gallery_name" accept="image/*" onchange="loadfile(event)"/>
+
+                            <script>
+                              function loadfile(event){
+                                document.getElementById('output').src=URL.createObjectURL(event.target.files[0]);
+                              }
+                            </script>
+
+                        </div>
+                      <div class="form-group">
+
+                        <label>PGDetails</label>
+
+                        <select class="form-control" name="pg_id">
+
+                          {% for val in p %}
+
+                            <option value="{{val.pg_id}}">{{val.pg_name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <input type="submit" value="submit">
+                    </div>
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+        </section>
+</div>
+
+{% endblock %}

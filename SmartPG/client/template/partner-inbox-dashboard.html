@@ -1,0 +1,56 @@
+{% extends 'client_header.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="dashboard-sidebar">
+                        <div class="db-user-profile">
+                            <div class="db-user-img"> <img src="images/dashboard-profile.jpg" alt="" class="img-circle"></div>
+                            <div class="db-user-info">
+                                <h3 class="db-user-name">Anita Parmar</h3>
+                                <small><a href="#">Edit Profile</a></small>
+                            </div>
+                        </div>
+                        <div class="dashboard-sidenav">
+                            <ul>
+                                 
+
+                                <li><a href="/client/partner_dashboard/">Dashboard</a></li>
+                                <li><a href="/client/manage_dashboard">Manage Service</a></li>
+                                <li><a href="/client/order_dashboard/">My Order</a></li>
+                                <li><a href="/client/manage_dashboard/">Withdraw</a></li>
+                                <li class="active"><a href=/client/inbox_dashboard/">Inbox</a></li>
+                                <li><a href="/client/owner_edit/">Profile</a></li>
+                                <li><a href="/client/owner_logout/">Logout</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="dashboard-box">
+                            <div class="dashboard-head">
+                                <h3 class="dashboard-head-title">Inbox</h3>
+                            </div>
+                            <div class="dashboard-data">
+                                <div class="inbox-list">
+                                    <!-- booking list-->
+                                    <ul class="listnone">
+                                        <li>
+                                            <p>You have 0 message</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+   {% endblock %}

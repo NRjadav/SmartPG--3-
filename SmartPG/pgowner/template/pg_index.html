@@ -1,0 +1,294 @@
+{% extends 'pgowner_header.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Main Content -->
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="row">
+      <div id="nilu" style="cursor: pointer;" class="col-lg-4 col-md-4 col-sm-8">
+        <div class="card card-statistic-2">
+          <div class="card-icon shadow-primary bg-cyan">
+            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+          </div>
+          <div class="card-body card-type-3">
+            <div class="row">
+              <div class="col">
+                <h6 class="text-muted mt-2 mb-1">User</h6>
+                <h6 class="font-weight-bold mb-0">{{u}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="nilu1" style="cursor: pointer;" class="col-lg-4 col-md-4 col-sm-8">
+        <div class="card card-statistic-2">
+          <div class="card-icon shadow-primary bg-purple">
+            <i class="fab fa-first-order"></i>
+          </div>
+          <div class="card-body card-type-3">
+            <div class="row">
+              <div class="col">
+                <h6 class="text-muted mt-2 mb-1">Booking Table</h6>
+                <h6 class="font-weight-bold mb-0">{{b}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="nilu2" style="cursor: pointer;" class="col-lg-4 col-md-4 col-sm-8">
+        <div class="card card-statistic-2">
+          <div class="card-icon shadow-primary bg-hibiscus">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </div>
+          <div class="card-body card-type-3">
+            <div class="row">
+              <div class="col">
+                <h6 class="text-muted mt-2 mb-1">PG-Table</h6>
+                <h6 class="font-weight-bold mb-0">{{p}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+        <div class="card">
+          <div class="card-header" style="width:2000px">
+            <h4>Monthly Appoitment</h4>
+          </div>
+          <div class="card-body">
+            {% include 'base.html' %}
+
+            <script>
+              {% block jquery %}
+
+              var endpoint = '/api/chart/data/'
+              var defaultData = []
+              var labels = [];
+              $.ajax({
+                method: "GET",
+                url: endpoint,
+                success: function (data) {
+                  labels = data.labels
+                  defaultData = data.default
+                  setChart()
+                },
+                error: function (error_data) {
+                  console.log("error")
+                  console.log(error_data)
+                }
+              })
+
+              function setChart() {
+                var ctx = document.getElementById("myChart");
+                var ctx2 = document.getElementById("myChart2");
+                var myChart = new Chart(ctx2, {
+                  type: 'bar',
+                  data: {
+                    labels: labels,
+                    datasets: [{
+                      label: 'Total Bookings',
+                      data: defaultData,
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        }
+                      }]
+                    }
+                  }
+                });
+
+                var myChart = new Chart(ctx, {
+                  type: 'polarArea',
+                  data: {
+                    labels: labels,
+                    datasets: [{
+                      label: '# of Votes',
+                      data: defaultData,
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        }
+                      }]
+                    }
+                  }
+                });
+              }
+              // var ctx = document.getElementById("myChart");
+
+
+
+              {% endblock %}
+            </script>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Recent Client Feedback</h4>
+        </div>
+        {% for val in f %}
+        <div class="card-body">
+          <ul class="list-unstyled user-progress list-unstyled-border list-unstyled-noborder mt-2">
+            <li class="media">
+              <img alt="image" class="mr-12 image-square" src="{% static '/images/'%}{{val.pg_id.img}}" height="100"
+                width="100">
+              <div class="media-body">
+                <div class="media-title">{{val.pg_id.pg_name}}</div>
+                <div>
+                  {% if val.rate == 1 %}
+                  <span class="rate"> <i class="fa fa-star"></i></span>
+                  {% elif val.rate == 2 %}
+                  <span class="rate"><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                  {% elif val.rate == 3 %}
+                  <span class="rate"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                      class="fa fa-star"></i></span>
+                  {% elif val.rate == 4 %}
+                  <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                      class="fa fa-star"></i></span>
+                  {% else %}
+                  <span class="rate"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                      class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+                  {% endif %}
+
+                </div>
+                <div class="text-muted">{{val.des}}</div>
+              </div>
+              <div class="media-cta">
+                <div class="text-job text-muted">{{val.date}}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-lg- col-md- col- col-sm- ">
+
+        <div class="card">
+          <div class="card-header">
+            <h4>Booking Details</h4>
+          </div>
+
+          <div class="card-body mt-3 mb-3">
+            <div class="table-responsive">
+              <table class="table">
+
+                <thead>
+                  <tr>
+                    <th>User Name</th>
+                    <th>PG Name</th>
+                    <th>Booking Date</th>
+                    <th>Priority</th>
+                  </tr>
+                </thead>
+                {% for x in bd %}
+                <tr>
+                  <td class="media">
+                    <img alt="image" class="mr-3 mt-2 image-square" width="40" src="{% static 'images/download.png' %}">
+                    <div class="media-body">
+                      <div class="media-tab-title">{{x.user_id.user_name}}</div>
+                      <div class="text-job text-muted">Web Developer</div>
+                    </div>
+                  </td>
+                  <td>{{x.pg_id.pg_name}}</td>
+                  <td>
+                    <div>
+                      <div>{{x.booking_date}}</div>
+                    </div>
+                  </td>
+                  <td>
+                    {% if x.booking_status == '0' %}
+                    <a href="/accept/{{x.booking_id}}"><img src="{% static 'images/accept1.jpg' %}" height="35"></a>
+                    <a href="/reject/{{x.booking_id}}"><img src="{% static 'images/reject2.jpg' %}" height="35"></a>
+                    {% elif x.booking_status == '1' %}
+                    <a href="/accept/{{x.booking_id}}"><img src="{% static 'images/accept1.jpg' %}" height="35"></a>
+                    {% else %}
+                    <a href="/reject/{{x.booking_id}}"><img src="{% static 'images/reject2.jpg' %}" height="35"></a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  $(document).ready(function(){
+
+    $(document).on("click","#nilu",function(){
+      window.location.href = '/pgowner/user_view/';
+      
+    })
+    $(document).on("click","#nilu2",function(){
+      window.location.href = '/pgowner/owner_pgowner/';
+      
+    })
+    $(document).on("click","#nilu1",function(){
+      window.location.href = '/pgowner/owner_bookingdetails/';
+      
+    })
+  })
+</script>
+
+
+
+{% endblock %}
